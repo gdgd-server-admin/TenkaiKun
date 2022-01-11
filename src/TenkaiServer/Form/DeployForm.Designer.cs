@@ -41,11 +41,11 @@ namespace TenkaiServer
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.FileChooseButton = new System.Windows.Forms.Button();
             this.ZipFilePath = new System.Windows.Forms.TextBox();
+            this.FileChooseButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoB)).BeginInit();
@@ -53,8 +53,8 @@ namespace TenkaiServer
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoD)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // AppListPullDown
@@ -62,7 +62,7 @@ namespace TenkaiServer
             this.AppListPullDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.AppListPullDown.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.AppListPullDown.FormattingEnabled = true;
-            this.AppListPullDown.Location = new System.Drawing.Point(203, 5);
+            this.AppListPullDown.Location = new System.Drawing.Point(203, 3);
             this.AppListPullDown.Name = "AppListPullDown";
             this.AppListPullDown.Size = new System.Drawing.Size(594, 23);
             this.AppListPullDown.TabIndex = 0;
@@ -185,15 +185,6 @@ namespace TenkaiServer
             this.flowLayoutPanel1.Size = new System.Drawing.Size(594, 24);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 236);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 55);
-            this.panel1.TabIndex = 11;
-            // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -214,6 +205,15 @@ namespace TenkaiServer
             this.panel2.Size = new System.Drawing.Size(594, 24);
             this.panel2.TabIndex = 12;
             // 
+            // ZipFilePath
+            // 
+            this.ZipFilePath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ZipFilePath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ZipFilePath.Location = new System.Drawing.Point(0, 0);
+            this.ZipFilePath.Name = "ZipFilePath";
+            this.ZipFilePath.Size = new System.Drawing.Size(554, 22);
+            this.ZipFilePath.TabIndex = 1;
+            // 
             // FileChooseButton
             // 
             this.FileChooseButton.Dock = System.Windows.Forms.DockStyle.Right;
@@ -224,14 +224,14 @@ namespace TenkaiServer
             this.FileChooseButton.Text = "参照";
             this.FileChooseButton.UseVisualStyleBackColor = true;
             // 
-            // ZipFilePath
+            // panel1
             // 
-            this.ZipFilePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ZipFilePath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ZipFilePath.Location = new System.Drawing.Point(0, 0);
-            this.ZipFilePath.Name = "ZipFilePath";
-            this.ZipFilePath.Size = new System.Drawing.Size(554, 22);
-            this.ZipFilePath.TabIndex = 1;
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 236);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 55);
+            this.panel1.TabIndex = 11;
             // 
             // button2
             // 
@@ -261,9 +261,9 @@ namespace TenkaiServer
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
