@@ -26,24 +26,24 @@ namespace TenkaiServer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("24680")]
-        public int ListenPort {
+        public int 待ち受けポート {
             get {
-                return ((int)(this["ListenPort"]));
+                return ((int)(this["待ち受けポート"]));
             }
             set {
-                this["ListenPort"] = value;
+                this["待ち受けポート"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string ListenIP {
+        public string I待ち受けアドレス {
             get {
-                return ((string)(this["ListenIP"]));
+                return ((string)(this["I待ち受けアドレス"]));
             }
             set {
-                this["ListenIP"] = value;
+                this["I待ち受けアドレス"] = value;
             }
         }
     }

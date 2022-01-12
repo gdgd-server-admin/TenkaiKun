@@ -2,10 +2,10 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TenkaiServer.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ListenPort" Type="System.Int32" Scope="User">
+    <Setting Name="待ち受けポート" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">24680</Value>
     </Setting>
-    <Setting Name="ListenIP" Type="System.String" Scope="User">
+    <Setting Name="I待ち受けアドレス" Type="System.String" Scope="User">
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
   </Settings>

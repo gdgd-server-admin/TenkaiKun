@@ -48,10 +48,10 @@ namespace TenkaiServer
 
             try
             {
-                var url = $"http://{Properties.Settings.Default.ListenIP}:{Properties.Settings.Default.ListenPort}/";
+                var url = $"http://{Properties.Settings.Default.I待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/";
                 webapp = WebApp.Start<Startup>(url: url);
                 menu.Items.Insert(0, new ToolStripSeparator());
-                menu.Items.Insert(0, new ToolStripLabel($"{Properties.Settings.Default.ListenIP}:{Properties.Settings.Default.ListenPort}"));
+                menu.Items.Insert(0, new ToolStripLabel($"{Properties.Settings.Default.I待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}"));
             }
             catch
             {
