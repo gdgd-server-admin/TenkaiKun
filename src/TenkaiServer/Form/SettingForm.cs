@@ -16,5 +16,16 @@ namespace TenkaiServer
         {
             InitializeComponent();
         }
+
+        private void SettingForm_Load(object sender, EventArgs e)
+        {
+            propertyGrid1.SelectedObject = Properties.Settings.Default;
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.Save();
+            MessageBox.Show("保存しました。反映するにはアプリケーションを再起動してください","",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
     }
 }

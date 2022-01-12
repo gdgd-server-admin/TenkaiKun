@@ -23,21 +23,27 @@ namespace TenkaiServer.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("24680")]
         public int ListenPort {
             get {
                 return ((int)(this["ListenPort"]));
             }
+            set {
+                this["ListenPort"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
         public string ListenIP {
             get {
                 return ((string)(this["ListenIP"]));
+            }
+            set {
+                this["ListenIP"] = value;
             }
         }
     }
