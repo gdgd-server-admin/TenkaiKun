@@ -5,11 +5,13 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NLog;
 
 namespace TenkaiServer
 {
     static class Program
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         static Form origin;
         static IDisposable webapp;
@@ -37,6 +39,7 @@ namespace TenkaiServer
             ContextMenuStrip menu = new ContextMenuStrip();
             menu.Items.Add("ファイルを展開");
             menu.Items.Add("サーバ設定");
+            menu.Items.Add(new ToolStripSeparator());
             menu.Items.Add("終了");
             menu.ItemClicked += Menu_ItemClicked;
             icon.ContextMenuStrip = menu;
@@ -45,7 +48,10 @@ namespace TenkaiServer
 
             try
             {
-                webapp = WebApp.Start<Startup>(url: $"http://127.0.0.1:24680/");
+                var url = $"http://{Properties.Settings.Default.ListenIP}:{Properties.Settings.Default.ListenPort}/";
+                webapp = WebApp.Start<Startup>(url: url);
+                menu.Items.Insert(0, new ToolStripSeparator());
+                menu.Items.Insert(0, new ToolStripLabel($"{Properties.Settings.Default.ListenIP}:{Properties.Settings.Default.ListenPort}"));
             }
             catch
             {
@@ -83,21 +89,38 @@ namespace TenkaiServer
                 case "ファイルを展開":
                     try
                     {
-                        deploy.Show(origin);
+                        if (deploy.Visible)
+                        {
+                            deploy.Activate();
+                        }
+                        else
+                        {
+                            deploy.Show(origin);
+                        }
                     }
-                    catch
+                    catch(Exception ex)
                     {
-                        deploy.Activate();
+                        logger.Error(ex, "");
+                        MessageBox.Show(ex.Message);
                     }
                     break;
                 case "サーバ設定":
                     try
                     {
-                        setting.Show(origin);
+                        if (setting.Visible)
+                        {
+                            setting.Activate();
+                        }
+                        else
+                        {
+                            setting.Show(origin);
+                        }
+                        
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        setting.Activate();
+                        logger.Error(ex, "");
+                        MessageBox.Show(ex.Message);
                     }
                     break;
                 case "終了":
