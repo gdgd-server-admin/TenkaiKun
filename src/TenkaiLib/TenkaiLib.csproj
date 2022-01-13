@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Models\AutoUpdateXml.cs" />
     <Compile Include="Models\ShortCut.cs" />
+    <Compile Include="Models\Tenkai.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -37,8 +37,8 @@ namespace TenkaiServer
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.WithChangeLog = new System.Windows.Forms.CheckBox();
+            this.ChangeLogTextBox = new System.Windows.Forms.RichTextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,7 +46,8 @@ namespace TenkaiServer
             this.ZipFilePath = new System.Windows.Forms.TextBox();
             this.FileChooseButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoC)).BeginInit();
@@ -127,36 +128,36 @@ namespace TenkaiServer
             // 
             // checkBox1
             // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(203, 97);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(594, 16);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "更新内容を知らせる";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.WithChangeLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.WithChangeLog.AutoSize = true;
+            this.WithChangeLog.Location = new System.Drawing.Point(203, 97);
+            this.WithChangeLog.Name = "checkBox1";
+            this.WithChangeLog.Size = new System.Drawing.Size(594, 16);
+            this.WithChangeLog.TabIndex = 8;
+            this.WithChangeLog.Text = "更新内容を知らせる";
+            this.WithChangeLog.UseVisualStyleBackColor = true;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Location = new System.Drawing.Point(203, 123);
-            this.richTextBox1.Name = "richTextBox1";
-            this.tableLayoutPanel1.SetRowSpan(this.richTextBox1, 2);
-            this.richTextBox1.Size = new System.Drawing.Size(594, 118);
-            this.richTextBox1.TabIndex = 9;
-            this.richTextBox1.Text = "";
+            this.ChangeLogTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChangeLogTextBox.Location = new System.Drawing.Point(203, 123);
+            this.ChangeLogTextBox.Name = "richTextBox1";
+            this.tableLayoutPanel1.SetRowSpan(this.ChangeLogTextBox, 2);
+            this.ChangeLogTextBox.Size = new System.Drawing.Size(594, 110);
+            this.ChangeLogTextBox.TabIndex = 9;
+            this.ChangeLogTextBox.Text = "";
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.ChangeLogTextBox, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AppListPullDown, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.richTextBox1, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.WithChangeLog, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
@@ -211,6 +212,7 @@ namespace TenkaiServer
             this.ZipFilePath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.ZipFilePath.Location = new System.Drawing.Point(0, 0);
             this.ZipFilePath.Name = "ZipFilePath";
+            this.ZipFilePath.ReadOnly = true;
             this.ZipFilePath.Size = new System.Drawing.Size(554, 22);
             this.ZipFilePath.TabIndex = 1;
             // 
@@ -223,27 +225,33 @@ namespace TenkaiServer
             this.FileChooseButton.TabIndex = 0;
             this.FileChooseButton.Text = "参照";
             this.FileChooseButton.UseVisualStyleBackColor = true;
+            this.FileChooseButton.Click += new System.EventHandler(this.FileChooseButton_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.SaveButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 236);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 55);
             this.panel1.TabIndex = 11;
             // 
-            // button2
+            // SaveButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.Location = new System.Drawing.Point(681, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 46);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "展　開";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SaveButton.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.SaveButton.Location = new System.Drawing.Point(681, 5);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(116, 46);
+            this.SaveButton.TabIndex = 0;
+            this.SaveButton.Text = "展　開";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "ZIPファイル|*.zip|インストーラー|*.exe";
             // 
             // DeployForm
             // 
@@ -254,6 +262,7 @@ namespace TenkaiServer
             this.Controls.Add(this.panel1);
             this.Name = "DeployForm";
             this.Text = "ファイルを展開する";
+            this.Load += new System.EventHandler(this.DeployForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoC)).EndInit();
@@ -278,8 +287,8 @@ namespace TenkaiServer
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.CheckBox WithChangeLog;
+        private System.Windows.Forms.RichTextBox ChangeLogTextBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
@@ -287,6 +296,7 @@ namespace TenkaiServer
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox ZipFilePath;
         private System.Windows.Forms.Button FileChooseButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
