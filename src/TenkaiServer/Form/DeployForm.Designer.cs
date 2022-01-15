@@ -67,6 +67,7 @@ namespace TenkaiServer
             this.AppListPullDown.Name = "AppListPullDown";
             this.AppListPullDown.Size = new System.Drawing.Size(594, 23);
             this.AppListPullDown.TabIndex = 0;
+            this.AppListPullDown.SelectedIndexChanged += new System.EventHandler(this.AppListPullDown_SelectedIndexChanged);
             // 
             // VersionNoA
             // 

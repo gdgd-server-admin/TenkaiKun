@@ -88,5 +88,15 @@ namespace TenkaiServer
         {
             AppListPullDown.Items.Add("test");
         }
+
+        private void AppListPullDown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Tenkai tenkai = Tenkai.Find(AppListPullDown.Text);
+            var version = tenkai.Version.Split('.');
+            VersionNoA.Value = int.Parse(version[0]);
+            VersionNoB.Value = int.Parse(version[1]);
+            VersionNoC.Value = int.Parse(version[2]);
+            VersionNoD.Value = int.Parse(version[3]);
+        }
     }
 }
