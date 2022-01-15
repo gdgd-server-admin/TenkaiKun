@@ -58,6 +58,9 @@ namespace TenkaiServer
             {
                 try
                 {
+                    var _execpath = Application.StartupPath;
+                    Microsoft.VisualBasic.FileIO.FileSystem.CopyFile(_fullpath, $"{_execpath}\\www\\download\\{_filename}");
+
                     Tenkai tenkai = Tenkai.Find(_name);
                     tenkai.FileName = _filename;
                     tenkai.Version = _version;

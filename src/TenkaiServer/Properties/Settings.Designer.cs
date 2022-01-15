@@ -38,12 +38,12 @@ namespace TenkaiServer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string I待ち受けアドレス {
+        public string 待ち受けアドレス {
             get {
-                return ((string)(this["I待ち受けアドレス"]));
+                return ((string)(this["待ち受けアドレス"]));
             }
             set {
-                this["I待ち受けアドレス"] = value;
+                this["待ち受けアドレス"] = value;
             }
         }
     }

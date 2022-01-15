@@ -126,22 +126,22 @@ namespace TenkaiServer
             this.label3.TabIndex = 7;
             this.label3.Text = "名称";
             // 
-            // checkBox1
+            // WithChangeLog
             // 
             this.WithChangeLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.WithChangeLog.AutoSize = true;
             this.WithChangeLog.Location = new System.Drawing.Point(203, 97);
-            this.WithChangeLog.Name = "checkBox1";
+            this.WithChangeLog.Name = "WithChangeLog";
             this.WithChangeLog.Size = new System.Drawing.Size(594, 16);
             this.WithChangeLog.TabIndex = 8;
             this.WithChangeLog.Text = "更新内容を知らせる";
             this.WithChangeLog.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // ChangeLogTextBox
             // 
             this.ChangeLogTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChangeLogTextBox.Location = new System.Drawing.Point(203, 123);
-            this.ChangeLogTextBox.Name = "richTextBox1";
+            this.ChangeLogTextBox.Name = "ChangeLogTextBox";
             this.tableLayoutPanel1.SetRowSpan(this.ChangeLogTextBox, 2);
             this.ChangeLogTextBox.Size = new System.Drawing.Size(594, 110);
             this.ChangeLogTextBox.TabIndex = 9;

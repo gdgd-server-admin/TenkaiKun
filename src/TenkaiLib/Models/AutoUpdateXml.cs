@@ -13,6 +13,10 @@ namespace TenkaiLib.Models
         public string Version { get; set; }
         public bool Mandatory { get; set; }
 
+        /// <summary>
+        /// AutoUpdate.NETが必要とするXMLに変換する
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
