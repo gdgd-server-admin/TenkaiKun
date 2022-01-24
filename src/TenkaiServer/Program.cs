@@ -6,11 +6,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NLog;
+using TenkaiLib.Models;
 
 namespace TenkaiServer
 {
     static class Program
     {
+        private const string STR_DEPLOY = "ファイルを展開";
+        private const string STR_SETTING = "サーバ設定";
+        private const string STR_MAKE_SHORTCUT = "ショートカット作成";
+
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         static Form origin;
@@ -18,6 +23,7 @@ namespace TenkaiServer
         static NotifyIcon icon;
         static DeployForm deploy;
         static SettingForm setting;
+        static ToolStripMenuItem tenkaimenu = new ToolStripMenuItem();
 
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
@@ -37,12 +43,17 @@ namespace TenkaiServer
             icon.Visible = true;
             icon.Text = "展開くんサーバ";
             ContextMenuStrip menu = new ContextMenuStrip();
-            menu.Items.Add("ファイルを展開");
-            menu.Items.Add("サーバ設定");
+            menu.Items.Add(tenkaimenu);
+            menu.Items.Add(STR_DEPLOY);
+            menu.Items.Add(STR_SETTING);
             menu.Items.Add(new ToolStripSeparator());
             menu.Items.Add("終了");
             menu.ItemClicked += Menu_ItemClicked;
             icon.ContextMenuStrip = menu;
+
+            tenkaimenu.Text = STR_MAKE_SHORTCUT;
+            tenkaimenu.DropDownItemClicked += Tenkaimenu_DropDownItemClicked;
+            UpdateTenkaiMenu();
 
             origin = new Form();
 
@@ -66,12 +77,19 @@ namespace TenkaiServer
             Application.Run();
         }
 
+        private static void Tenkaimenu_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            MessageBox.Show(e.ClickedItem.Text);
+        }
+
         private static void Deploy_Disposed(object sender, EventArgs e)
         {
             deploy = null;
             GC.Collect();
             deploy = new DeployForm();
             deploy.Disposed += Deploy_Disposed;
+
+            UpdateTenkaiMenu();
         }
 
         private static void Setting_Disposed(object sender, EventArgs e)
@@ -85,8 +103,8 @@ namespace TenkaiServer
         private static void Menu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             switch (e.ClickedItem.Text)
-            {
-                case "ファイルを展開":
+            {                
+                case STR_DEPLOY:
                     try
                     {
                         if (deploy.Visible)
@@ -104,7 +122,7 @@ namespace TenkaiServer
                         MessageBox.Show(ex.Message);
                     }
                     break;
-                case "サーバ設定":
+                case STR_SETTING:
                     try
                     {
                         if (setting.Visible)
@@ -129,6 +147,14 @@ namespace TenkaiServer
                     Application.Exit();
                     break;
             }
+        }
+
+        private static void UpdateTenkaiMenu()
+        {
+            tenkaimenu.DropDownItems.Clear();
+
+            Tenkai.All().ForEach(x => tenkaimenu.DropDownItems.Add(x.Name));
+
         }
     }
 }

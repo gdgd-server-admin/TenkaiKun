@@ -80,13 +80,15 @@ namespace TenkaiServer
 
             UseWaitCursor = false;
             MessageBox.Show("データを保存しました");
+            AppListPullDown.Items.Clear();
+            Tenkai.All().ForEach(x => AppListPullDown.Items.Add(x.Name));
             tableLayoutPanel1.Enabled = true;
             panel1.Enabled = true;
         }
 
         private void DeployForm_Load(object sender, EventArgs e)
         {
-            AppListPullDown.Items.Add("test");
+            Tenkai.All().ForEach(x => AppListPullDown.Items.Add(x.Name));
         }
 
         private void AppListPullDown_SelectedIndexChanged(object sender, EventArgs e)

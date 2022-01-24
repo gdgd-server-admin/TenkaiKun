@@ -59,5 +59,14 @@ namespace TenkaiLib.Models
 
             
         }
+
+        public static List<Tenkai> All()
+        {
+            using (var db = new LiteDatabase("tenkai_server.db"))
+            {
+                var collection = db.GetCollection<Tenkai>("Tenkai");
+                return collection.FindAll().ToList();
+            }
+        }
     }
 }
