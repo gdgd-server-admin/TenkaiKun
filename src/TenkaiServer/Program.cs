@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NLog;
 using TenkaiLib.Models;
+using System.IO;
 
 namespace TenkaiServer
 {
@@ -79,7 +80,28 @@ namespace TenkaiServer
 
         private static void Tenkaimenu_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            MessageBox.Show(e.ClickedItem.Text);
+            using(SaveFileDialog dialog = new SaveFileDialog())
+            {
+                ShortCut shortCut = new ShortCut();
+                shortCut.Name = e.ClickedItem.Text;
+                shortCut.Url = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/api/metadata/{e.ClickedItem.Text}";
+                shortCut.Path = "test.exe";
+
+                dialog.Filter = "展開くんショートカット|*.ten";
+
+                if(dialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (shortCut.SaveToFile(dialog.FileName))
+                    {
+                        MessageBox.Show("保存しました");
+                    }
+                    else
+                    {
+                        MessageBox.Show("保存に失敗しました。ログを確認してください");
+                    }
+                }
+            }
+            
         }
 
         private static void Deploy_Disposed(object sender, EventArgs e)
