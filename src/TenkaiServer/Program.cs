@@ -82,10 +82,12 @@ namespace TenkaiServer
         {
             using(SaveFileDialog dialog = new SaveFileDialog())
             {
+                var tenkai = Tenkai.Find(e.ClickedItem.Text);
+
                 ShortCut shortCut = new ShortCut();
-                shortCut.Name = e.ClickedItem.Text;
-                shortCut.Url = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/api/metadata/{e.ClickedItem.Text}";
-                shortCut.Path = "test.exe";
+                shortCut.Name = tenkai.Name;
+                shortCut.Url = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/api/metadata/{tenkai.Name}";
+                shortCut.Path = tenkai.LaunchPath;
 
                 dialog.Filter = "展開くんショートカット|*.ten";
 

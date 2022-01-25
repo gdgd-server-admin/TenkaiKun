@@ -51,6 +51,7 @@ namespace TenkaiServer
             string _name = AppListPullDown.Text;
             string _filename = $"{_name}_{ZipFilePath.Text.Split('\\').Last()}";
             string _fullpath = ZipFilePath.Text;
+            string _launchpath = LaunchPath.Text;
             string _version = $"{VersionNoA.Value}.{VersionNoB.Value}.{VersionNoC.Value}.{VersionNoD.Value}";
             string _changelog = WithChangeLog.Checked ? ChangeLogTextBox.Text : "";
 
@@ -65,6 +66,7 @@ namespace TenkaiServer
                     tenkai.FileName = _filename;
                     tenkai.Version = _version;
                     tenkai.Changelog = _changelog;
+                    tenkai.LaunchPath = _launchpath;
                     tenkai.Save();
 
                     return true;
@@ -99,6 +101,7 @@ namespace TenkaiServer
             VersionNoB.Value = int.Parse(version[1]);
             VersionNoC.Value = int.Parse(version[2]);
             VersionNoD.Value = int.Parse(version[3]);
+            LaunchPath.Text = tenkai.LaunchPath;
         }
     }
 }

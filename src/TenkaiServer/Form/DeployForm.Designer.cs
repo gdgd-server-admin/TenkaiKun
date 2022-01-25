@@ -48,6 +48,8 @@ namespace TenkaiServer
             this.panel1 = new System.Windows.Forms.Panel();
             this.SaveButton = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label5 = new System.Windows.Forms.Label();
+            this.LaunchPath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VersionNoC)).BeginInit();
@@ -101,7 +103,7 @@ namespace TenkaiServer
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 69);
+            this.label1.Location = new System.Drawing.Point(3, 99);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(194, 12);
             this.label1.TabIndex = 5;
@@ -111,7 +113,7 @@ namespace TenkaiServer
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 99);
+            this.label2.Location = new System.Drawing.Point(3, 129);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(194, 12);
             this.label2.TabIndex = 6;
@@ -131,7 +133,7 @@ namespace TenkaiServer
             // 
             this.WithChangeLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.WithChangeLog.AutoSize = true;
-            this.WithChangeLog.Location = new System.Drawing.Point(203, 97);
+            this.WithChangeLog.Location = new System.Drawing.Point(203, 127);
             this.WithChangeLog.Name = "WithChangeLog";
             this.WithChangeLog.Size = new System.Drawing.Size(594, 16);
             this.WithChangeLog.TabIndex = 8;
@@ -141,7 +143,7 @@ namespace TenkaiServer
             // ChangeLogTextBox
             // 
             this.ChangeLogTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ChangeLogTextBox.Location = new System.Drawing.Point(203, 123);
+            this.ChangeLogTextBox.Location = new System.Drawing.Point(203, 153);
             this.ChangeLogTextBox.Name = "ChangeLogTextBox";
             this.tableLayoutPanel1.SetRowSpan(this.ChangeLogTextBox, 2);
             this.ChangeLogTextBox.Size = new System.Drawing.Size(594, 110);
@@ -153,19 +155,22 @@ namespace TenkaiServer
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.ChangeLogTextBox, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.ChangeLogTextBox, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.AppListPullDown, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.WithChangeLog, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.WithChangeLog, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.LaunchPath, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -182,7 +187,7 @@ namespace TenkaiServer
             this.flowLayoutPanel1.Controls.Add(this.VersionNoC);
             this.flowLayoutPanel1.Controls.Add(this.VersionNoD);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(203, 63);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(203, 93);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(594, 24);
             this.flowLayoutPanel1.TabIndex = 10;
@@ -254,6 +259,25 @@ namespace TenkaiServer
             // 
             this.openFileDialog1.Filter = "ZIPファイル|*.zip|インストーラー|*.exe";
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 69);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(194, 12);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "起動パス";
+            // 
+            // LaunchPath
+            // 
+            this.LaunchPath.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LaunchPath.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.LaunchPath.Location = new System.Drawing.Point(203, 63);
+            this.LaunchPath.Name = "LaunchPath";
+            this.LaunchPath.Size = new System.Drawing.Size(594, 22);
+            this.LaunchPath.TabIndex = 14;
+            // 
             // DeployForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -299,5 +323,7 @@ namespace TenkaiServer
         private System.Windows.Forms.Button FileChooseButton;
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox LaunchPath;
     }
 }

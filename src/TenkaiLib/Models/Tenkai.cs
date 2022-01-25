@@ -13,6 +13,7 @@ namespace TenkaiLib.Models
         public string Name { get; set; }
         public string Version { get; set; }
         public string Changelog { get; set; }
+        public string LaunchPath { get; set; }
         public string FileName { get; set; }
 
         public bool Save()
@@ -26,6 +27,7 @@ namespace TenkaiLib.Models
                     row.Version = Version;
                     row.Changelog = Changelog;
                     row.FileName = FileName;
+                    row.LaunchPath = LaunchPath;
                     collection.Update(row);
                 }
                 else
@@ -52,7 +54,8 @@ namespace TenkaiLib.Models
                         Changelog = "",
                         Name = Name,
                         Version = "0.0.0.0",
-                        FileName = ""
+                        FileName = "",
+                        LaunchPath = ""
                     };
                 }
             }
