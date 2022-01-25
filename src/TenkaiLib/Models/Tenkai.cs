@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LiteDB;
+using System.IO;
 
 namespace TenkaiLib.Models
 {
@@ -16,9 +17,17 @@ namespace TenkaiLib.Models
         public string LaunchPath { get; set; }
         public string FileName { get; set; }
 
+        private static string GetDbPath()
+        {
+            var execpath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            var dir = Path.GetDirectoryName(execpath);
+            return Path.Combine(dir, "tenkaikun.db");
+        }
         public bool Save()
         {
-            using(var db = new LiteDatabase("tenkaikun.db"))
+            
+            
+            using (var db = new LiteDatabase(GetDbPath()))
             {
                 var collection = db.GetCollection<Tenkai>("Tenkai");
                 if(collection.Count(x => x.Id == Id) != 0)
@@ -40,7 +49,7 @@ namespace TenkaiLib.Models
 
         public static Tenkai Find(string Name)
         {
-            using (var db = new LiteDatabase("tenkaikun.db"))
+            using (var db = new LiteDatabase(GetDbPath()))
             {
                 var collection = db.GetCollection<Tenkai>("Tenkai");
                 if (collection.Count(x => x.Name == Name) != 0)
@@ -65,7 +74,7 @@ namespace TenkaiLib.Models
 
         public static List<Tenkai> All()
         {
-            using (var db = new LiteDatabase("tenkaikun.db"))
+            using (var db = new LiteDatabase(GetDbPath()))
             {
                 var collection = db.GetCollection<Tenkai>("Tenkai");
                 return collection.FindAll().ToList();
