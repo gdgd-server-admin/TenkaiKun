@@ -18,7 +18,7 @@ namespace TenkaiLib.Models
 
         public bool Save()
         {
-            using(var db = new LiteDatabase("tenkai_server.db"))
+            using(var db = new LiteDatabase("tenkaikun.db"))
             {
                 var collection = db.GetCollection<Tenkai>("Tenkai");
                 if(collection.Count(x => x.Id == Id) != 0)
@@ -40,7 +40,7 @@ namespace TenkaiLib.Models
 
         public static Tenkai Find(string Name)
         {
-            using (var db = new LiteDatabase("tenkai_server.db"))
+            using (var db = new LiteDatabase("tenkaikun.db"))
             {
                 var collection = db.GetCollection<Tenkai>("Tenkai");
                 if (collection.Count(x => x.Name == Name) != 0)
@@ -65,7 +65,7 @@ namespace TenkaiLib.Models
 
         public static List<Tenkai> All()
         {
-            using (var db = new LiteDatabase("tenkai_server.db"))
+            using (var db = new LiteDatabase("tenkaikun.db"))
             {
                 var collection = db.GetCollection<Tenkai>("Tenkai");
                 return collection.FindAll().ToList();

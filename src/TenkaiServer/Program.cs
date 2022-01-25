@@ -86,7 +86,7 @@ namespace TenkaiServer
 
                 ShortCut shortCut = new ShortCut();
                 shortCut.Name = tenkai.Name;
-                shortCut.Url = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/api/metadata/{tenkai.Name}";
+                shortCut.Url = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/api/update/metadata/{tenkai.Name}";
                 shortCut.Path = tenkai.LaunchPath;
 
                 dialog.Filter = "展開くんショートカット|*.ten";

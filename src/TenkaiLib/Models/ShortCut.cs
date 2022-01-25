@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using YamlDotNet.RepresentationModel;
 using YamlDotNet.Serialization;
 
 namespace TenkaiLib.Models
@@ -44,6 +46,37 @@ namespace TenkaiLib.Models
             {
                 logger.Error(ex, "ショートカットファイル作成中にエラー");
             }
+
+            return res;
+        }
+
+        public static ShortCut ReadFromFile(string filepath)
+        {
+            using (var input = new StreamReader(filepath, Encoding.UTF8))
+            {
+                var deserializer = new Deserializer();
+                var res = deserializer.Deserialize<ShortCut>(input);
+
+                return res;
+            }
+        }
+
+        public bool Validate()
+        {
+            bool res = true;
+
+            // Urlのアドレスからレスポンスコード200が返ってくるか
+            using (var client = new HttpClient())
+            {
+                var result = client.GetAsync(Url).Result;
+                if (result.StatusCode != System.Net.HttpStatusCode.OK) res = false;
+            }
+
+            // Nameが空でないか
+            if (string.IsNullOrWhiteSpace(Name)) res = false;
+
+            // Pathが空でないか
+            if (string.IsNullOrWhiteSpace(Path)) res = false;
 
             return res;
         }
