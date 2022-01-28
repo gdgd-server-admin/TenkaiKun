@@ -13,13 +13,13 @@ namespace TenkaiServer.WebAPI
     public class MetadataController : ApiController
     {
         [HttpGet]
-        [Route("metadata/{appname}")]
-        public HttpResponseMessage GetData(string appname)
+        [Route("metadata/{oid}")]
+        public HttpResponseMessage GetData(string oid)
         {
-            Tenkai tenkai = Tenkai.Find(appname);
+            Tenkai tenkai = Tenkai.FindByOid(oid);
             AutoUpdateXml xml = new AutoUpdateXml();
             xml.Url = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/download/{tenkai.FileName}";
-            xml.ChangeLog = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/api/update/changelog/{appname}";
+            xml.ChangeLog = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/api/update/changelog/{tenkai.GetOid()}";
             xml.Version = tenkai.Version;
             xml.Mandatory = false;
 
@@ -30,10 +30,10 @@ namespace TenkaiServer.WebAPI
         }
 
         [HttpGet]
-        [Route("changelog/{appname}")]
-        public HttpResponseMessage GetChangelog(string appname)
+        [Route("changelog/{oid}")]
+        public HttpResponseMessage GetChangelog(string oid)
         {
-            Tenkai tenkai = Tenkai.Find(appname);
+            Tenkai tenkai = Tenkai.FindByOid(oid);
             
 
             return new HttpResponseMessage()

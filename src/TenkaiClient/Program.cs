@@ -93,7 +93,7 @@ namespace TenkaiClient
             // LiteDBから現在インストールされてるバージョンを取得
 
             // AutoUpdateにバージョン情報を同期モードで食わせる
-            Tenkai tenkai = Tenkai.Find(appname);
+            Tenkai tenkai = Tenkai.FindByName(appname);
             AutoUpdater.InstalledVersion = new Version(tenkai.Version);
             AutoUpdater.InstallationPath = Path.Combine(Application.StartupPath, shortcut.Name);
             if (!Directory.Exists(Path.Combine(Application.StartupPath, shortcut.Name))) Directory.CreateDirectory(Path.Combine(Application.StartupPath, shortcut.Name));
@@ -119,7 +119,7 @@ namespace TenkaiClient
         {
             if (!string.IsNullOrWhiteSpace(newversion))
             {
-                Tenkai tenkai = Tenkai.Find(appname);
+                Tenkai tenkai = Tenkai.FindByName(appname);
                 tenkai.Version = newversion;
                 tenkai.Name = appname;
                 tenkai.Save();

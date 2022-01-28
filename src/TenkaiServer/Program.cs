@@ -65,8 +65,9 @@ namespace TenkaiServer
                 menu.Items.Insert(0, new ToolStripSeparator());
                 menu.Items.Insert(0, new ToolStripLabel($"{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}"));
             }
-            catch
+            catch(Exception ex)
             {
+                logger.Error(ex, "APIサーバの起動に失敗");
                 MessageBox.Show("APIサーバの起動に失敗。設定を確認してアプリケーションを再起動してください");
             }
 
@@ -82,11 +83,12 @@ namespace TenkaiServer
         {
             using(SaveFileDialog dialog = new SaveFileDialog())
             {
-                var tenkai = Tenkai.Find(e.ClickedItem.Text);
+                var tenkai = Tenkai.FindByName(e.ClickedItem.Text);
 
                 ShortCut shortCut = new ShortCut();
+                shortCut.Oid = tenkai.GetOid();
                 shortCut.Name = tenkai.Name;
-                shortCut.Url = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/api/update/metadata/{tenkai.Name}";
+                shortCut.Url = $"http://{Properties.Settings.Default.待ち受けアドレス}:{Properties.Settings.Default.待ち受けポート}/api/update/metadata/{tenkai.GetOid()}";
                 shortCut.Path = tenkai.LaunchPath;
 
                 dialog.Filter = "展開くんショートカット|*.ten";

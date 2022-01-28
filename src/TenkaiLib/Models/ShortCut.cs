@@ -14,6 +14,12 @@ namespace TenkaiLib.Models
     public class ShortCut
     {
         private Logger logger = LogManager.GetCurrentClassLogger();
+
+        /// <summary>
+        /// LiteDBのObjectIdを文字列にして入れておく
+        /// </summary>
+        public string Oid { get; set; }
+
         /// <summary>
         /// サーバＵＲＬ
         /// </summary>

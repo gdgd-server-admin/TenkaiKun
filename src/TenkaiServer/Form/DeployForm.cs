@@ -49,7 +49,6 @@ namespace TenkaiServer
             UseWaitCursor = true;
 
             string _name = AppListPullDown.Text;
-            string _filename = $"{_name}_{ZipFilePath.Text.Split('\\').Last()}";
             string _fullpath = ZipFilePath.Text;
             string _launchpath = LaunchPath.Text;
             string _version = $"{VersionNoA.Value}.{VersionNoB.Value}.{VersionNoC.Value}.{VersionNoD.Value}";
@@ -59,11 +58,13 @@ namespace TenkaiServer
             {
                 try
                 {
-                    var _execpath = Application.StartupPath;
-                    Microsoft.VisualBasic.FileIO.FileSystem.CopyFile(_fullpath, $"{_execpath}\\www\\download\\{_filename}");
+                    Tenkai tenkai = Tenkai.FindByName(_name);
 
-                    Tenkai tenkai = Tenkai.Find(_name);
-                    tenkai.FileName = _filename;
+                    var _execpath = Application.StartupPath;
+                    Microsoft.VisualBasic.FileIO.FileSystem.CopyFile(_fullpath, $"{_execpath}\\www\\download\\{tenkai.GetOid()}_{ZipFilePath.Text.Split('\\').Last()}");
+
+                    tenkai.Name = _name;
+                    tenkai.FileName = $"{tenkai.GetOid()}_{ZipFilePath.Text.Split('\\').Last()}";
                     tenkai.Version = _version;
                     tenkai.Changelog = _changelog;
                     tenkai.LaunchPath = _launchpath;
@@ -95,7 +96,7 @@ namespace TenkaiServer
 
         private void AppListPullDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Tenkai tenkai = Tenkai.Find(AppListPullDown.Text);
+            Tenkai tenkai = Tenkai.FindByName(AppListPullDown.Text);
             var version = tenkai.Version.Split('.');
             VersionNoA.Value = int.Parse(version[0]);
             VersionNoB.Value = int.Parse(version[1]);

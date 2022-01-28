@@ -17,6 +17,8 @@ namespace TenkaiLib.Models
         public string LaunchPath { get; set; }
         public string FileName { get; set; }
 
+        public string GetOid() { return Id.ToString(); }
+
         private static string GetDbPath()
         {
             var execpath = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -47,7 +49,31 @@ namespace TenkaiLib.Models
             return true;
         }
 
-        public static Tenkai Find(string Name)
+        public static Tenkai FindByOid(string Oid)
+        {
+            using (var db = new LiteDatabase(GetDbPath()))
+            {
+                var collection = db.GetCollection<Tenkai>("Tenkai");
+                if (collection.Count(x => x.Id.Equals(new ObjectId(Oid))) != 0)
+                {
+                    return collection.FindOne(x => x.Id.Equals(new ObjectId(Oid)));
+                }
+                else
+                {
+                    return new Tenkai()
+                    {
+                        Id = ObjectId.NewObjectId(),
+                        Changelog = "",
+                        Name = "",
+                        Version = "0.0.0.0",
+                        FileName = "",
+                        LaunchPath = ""
+                    };
+                }
+            }
+        }
+
+        public static Tenkai FindByName(string Name)
         {
             using (var db = new LiteDatabase(GetDbPath()))
             {
@@ -60,6 +86,7 @@ namespace TenkaiLib.Models
                 {
                     return new Tenkai()
                     {
+                        Id = ObjectId.NewObjectId(),
                         Changelog = "",
                         Name = Name,
                         Version = "0.0.0.0",
@@ -68,8 +95,6 @@ namespace TenkaiLib.Models
                     };
                 }
             }
-
-            
         }
 
         public static List<Tenkai> All()
