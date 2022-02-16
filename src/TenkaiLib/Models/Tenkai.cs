@@ -19,6 +19,15 @@ namespace TenkaiLib.Models
 
         public string GetOid() { return Id.ToString(); }
 
+        public void Delete()
+        {
+            using (var db = new LiteDatabase(GetDbPath()))
+            {
+                var collection = db.GetCollection<Tenkai>("Tenkai");
+                collection.Delete(Id);
+            }
+        }
+
         private static string GetDbPath()
         {
             var execpath = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -27,8 +36,6 @@ namespace TenkaiLib.Models
         }
         public bool Save()
         {
-            
-            
             using (var db = new LiteDatabase(GetDbPath()))
             {
                 var collection = db.GetCollection<Tenkai>("Tenkai");
