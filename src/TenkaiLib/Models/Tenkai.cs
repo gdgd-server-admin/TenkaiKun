@@ -24,6 +24,7 @@ namespace TenkaiLib.Models
             using (var db = new LiteDatabase(GetDbPath()))
             {
                 var collection = db.GetCollection<Tenkai>("Tenkai");
+                File.Delete(Path.Combine(@"./www",FileName));
                 collection.Delete(Id);
             }
         }
